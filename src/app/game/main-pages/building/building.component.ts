@@ -53,6 +53,7 @@ export class BuildingComponent implements OnInit {
             this.service.getIronBuildInfo(this.level.lvIron, this.guard.currentUser),
         )
             .subscribe(([rHome, rMain, rFood, rWood, rStone, rOre, rIron]: [any, any, any, any, any, any, any]) => {
+
                 const homeData = JSON.parse(rHome._body) as HomeBuildModel;
                 const mainData = JSON.parse(rMain._body) as MainBuildModel;
                 const foodData = JSON.parse(rFood._body) as FoodBuildModel;
