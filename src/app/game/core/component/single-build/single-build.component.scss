@@ -1,0 +1,56 @@
+.image {
+  width: 100%;
+}
+
+.small-image {
+  width: 30px;
+}
+
+.inp {
+  padding: 4px;
+  background-color: beige;
+  border-color: #000;
+  border: 1px solid;
+}
+
+.gif {
+  width: 30px;
+  height: 30px;
+}
+
+.big-title {
+  font-weight: bold;
+  font-size: 30px;
+}
+
+.separator {
+  border-bottom: 1px solid;
+  border-color: black;
+}
+
+.main-wrp {
+  background-color: beige;
+  padding: 16px;
+  border-color: black;
+  border: 1px solid;
+}
+
+.body,
+.footer {
+  margin-top: 16px;
+}
+
+.margin-top {
+  margin-top: 8px;
+}
+
+.info {
+  padding: 4px;
+  border-color: #D32F2F;
+  border: 1px solid;
+  text-align: center;
+}
+
+.green {
+  color: green;
+}

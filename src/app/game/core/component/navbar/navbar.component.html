@@ -1,0 +1,62 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" *ngIf="!isLoading">
+  <img src="/assets/images/logo.png" alt="Alaunt logo" class="logo-image">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+    aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav">
+      <li class="nav-item padding-left">
+        <img src="/assets/images/navbar/food.png" alt="Food" class="small-icon" (mouseenter)="triggerPopup('food', true)" (mouseleave)="triggerPopup('food', false)">
+        <span class="white">{{resources.food | floor}}</span>
+        <span class="wrp" *ngIf="showFood">Food</span>
+      </li>
+      <li class="nav-item padding-left">
+        <img src="/assets/images/navbar/wood.png" alt="Wood" class="small-icon" (mouseenter)="triggerPopup('wood', true)" (mouseleave)="triggerPopup('wood', false)">
+        <span class="white">{{resources.wood | floor}}</span>
+        <span class="wrp" *ngIf="showWood">Wood</span>
+      </li>
+      <li class="nav-item padding-left">
+        <img src="/assets/images/navbar/stone.png" alt="Stone" class="small-icon" (mouseenter)="triggerPopup('stone', true)" (mouseleave)="triggerPopup('stone', false)">
+        <span class="white">{{resources.stone | floor}}</span>
+        <span class="wrp" *ngIf="showStone">
+          Stone</span>
+      </li>
+      <li class="nav-item padding-left">
+        <img src="/assets/images/navbar/iron.png" alt="Iron" class="small-icon" (mouseenter)="triggerPopup('iron', true)" (mouseleave)="triggerPopup('iron', false)">
+        <span class="white">{{resources.iron | floor}}</span>
+        <span class="wrp" *ngIf="showIron">
+          Iron</span>
+      </li>
+      <li class="nav-item padding-left">
+        <img src="/assets/images/navbar/ore.png" alt="Ore" class="small-icon" (mouseenter)="triggerPopup('ore', true)" (mouseleave)="triggerPopup('ore', false)">
+        <span class="white">{{resources.ore | floor}}</span>
+        <span class="wrp" *ngIf="showOre">
+          Ore</span>
+      </li>
+      <li class="nav-item padding-left">
+        <img src="/assets/images/navbar/mitril.png" alt="Mitril" class="small-icon" (mouseenter)="triggerPopup('mitril', true)" (mouseleave)="triggerPopup('mitril', false)">
+        <span class="white">{{resources.mitril | floor}}</span>
+        <span class="wrp" *ngIf="showMitril">
+          Mitril</span>
+      </li>
+      <li class="nav-item padding-left">
+        <img src="/assets/images/navbar/please.png" alt="Please" class="small-icon" (mouseenter)="triggerPopup('please', true)" (mouseleave)="triggerPopup('please', false)">
+        <span class="white">{{resources.please}}</span>
+        <span class="wrp" *ngIf="showPlease">
+          Please</span>
+      </li>
+      <li class="nav-item padding-left">
+        <img src="/assets/images/navbar/people.png" alt="Workers" class="small-icon" (mouseenter)="triggerPopup('workers', true)"
+          (mouseleave)="triggerPopup('workers', false)">
+        <span class="white">{{resources.workers}}</span>
+        <span class="wrp" *ngIf="showWorkers">
+          Workers</span>
+      </li>
+      <li class="nav-item padding-left">
+        <i class="fa fa-bar-chart white"> Score : </i>
+        <span class="white">{{resources.points}}</span>
+      </li>
+    </ul>
+  </div>
+</nav>

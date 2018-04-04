@@ -1,0 +1,5 @@
+<div *ngIf="!isLoading">
+  <div class="wrp" *ngFor="let data of model">
+    <app-single-build [model]="data" [isSomethingUpdating]="isSomethingUpdating"></app-single-build>
+  </div>
+</div>

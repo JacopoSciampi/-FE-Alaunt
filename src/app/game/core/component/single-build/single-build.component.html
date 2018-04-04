@@ -1,0 +1,74 @@
+<div class="col-md-12 main-wrp">
+  <div class="lib-panel">
+    <div class="row box-shadow">
+      <div class="col-md-3">
+        <img class="image" src="{{model.image}}">
+      </div>
+      <div class="col-md-9">
+        <div class="header">
+          <span class="big-title">{{model.name}}</span> - Level : {{model.level}}
+        </div>
+        <div class="separator"></div>
+        <div class="body">
+          {{model.desc}}
+        </div>
+        <div class="separator"></div>
+        <div class="footer" *ngIf="!model.isUpdate">
+          <h4>Cost to update</h4>
+          <div class="row">
+            <div class="col-md-12">
+              <span>
+                <img class="small-image" src="/assets/images/navbar/wood.png"> {{model.woodCost}}</span>
+              <span>
+                <img class="small-image" src="/assets/images/navbar/stone.png"> {{model.stoneCost}}</span>
+              <span *ngIf="!!model.ironCost">
+                <img class="small-image" src="/assets/images/navbar/iron.png"> {{model.ironCost}}</span>
+              <span *ngIf="!!model.oreCost">
+                <img class="small-image" src="/assets/images/navbar/ore.png"> {{model.oreCost}}</span>
+            </div>
+            <div class="col-md-12 margin-top">
+              Time to update: {{stringTime}}
+            </div>
+            <div class="col-md-12 margin-top" *ngIf="model.people">
+              Workers given : {{model.people}}
+            </div>
+            <div class="col-md-12 margin-top" *ngIf="model.isProduction">
+              Production/minute (per worker) : ({{model.currentProduction}})
+              <span class="green">+{{model.productionMinute}}
+              </span>
+            </div>
+            <div class="col-md-6 margin-top">
+              <form [formGroup]="updateFormGroup">
+                <input class="inp" OnlyNumber="true" type="text" placeholder="Workers to update" formControlName="number">
+              </form>
+            </div>
+            <div class="col-md-6 margin-top" *ngIf="!isSomethingUpdating">
+              <button class="c-btn" (click)="onUpdateClick()" *ngIf="!isUpdateRequestLoading"> Update</button>
+              <img class="gif" src="/assets/loading.GIF" *ngIf="isUpdateRequestLoading">
+            </div>
+            <div class="col-md-6 margin-top" *ngIf="isSomethingUpdating">
+              <div class="info">An update is already in progress</div>
+            </div>
+          </div>
+        </div>
+        <div class="footer" *ngIf="!!model.isUpdate">
+          <h4>Update in progress</h4>
+          <app-loading-bar [data]="updateData" *ngIf="isLoadingBarRenderComplete"></app-loading-bar>
+        </div>
+        <div class="footer" *ngIf="!!model.isProduction">
+          Current workers deployed : {{model.atWork}}
+        </div>
+        <div class="row" *ngIf="model.level > 0">
+          <div class="col-md-6 margin-top" *ngIf="!model.isUpdate && !!model.isProduction">
+            <form [formGroup]="workFormGroup">
+              <input class="inp" OnlyNumber="true" type="text" placeholder="Number of workers" formControlName="nWork">
+            </form>
+          </div>
+          <div class="col-md-6 margin-top" *ngIf="!model.isUpdate && !!model.isProduction">
+            <button class="c-btn" (click)="onAddWorkers()" *ngIf="!isUpdateRequestLoading"> Update</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

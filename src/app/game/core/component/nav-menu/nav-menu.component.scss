@@ -1,0 +1,19 @@
+@font-face {
+  font-family: 'Almendra';
+  src: url('/assets/Almendra.ttf') format('truetype');
+}
+
+.menu-button {
+  background-color: #343a40;
+  color: rgb(69, 221, 77);
+  width: 100%;
+}
+
+.container-fluid {
+  padding: 16px;
+  font-family: 'Almendra' !important;
+}
+
+.button-padding {
+  padding-top: 16px;
+}
