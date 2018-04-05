@@ -12,3 +12,7 @@ Board : https://trello.com/b/rcVqjDAn/alaunt
 ## Qustions
 
 Feel free to submit improvement here, on Trello or on the topic.
+
+## Are you a graphic designer?
+
+I would have the please to talk with you :)
