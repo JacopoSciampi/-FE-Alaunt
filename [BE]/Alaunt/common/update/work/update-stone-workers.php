@@ -16,7 +16,7 @@
 		$username = htmlspecialchars($_GET['username']);
 	}
 
-	if((empty($workers))||(empty($username))){
+	if(($workers < 0)||(empty($username))){
 		$message = "Empty fields not allowed";
 		$isValid = false;
 	}else{

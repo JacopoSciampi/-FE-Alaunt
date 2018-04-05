@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 05, 2018 at 09:53 AM
+-- Generation Time: Apr 05, 2018 at 03:42 PM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 7.2.1
 
@@ -21,6 +21,36 @@ SET time_zone = "+00:00";
 --
 -- Database: `alaunt`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `accademy`
+--
+
+CREATE TABLE `accademy` (
+  `level` int(3) NOT NULL,
+  `timeToUpdate` varchar(15) NOT NULL,
+  `woodCost` varchar(15) NOT NULL,
+  `stoneCost` varchar(15) NOT NULL,
+  `ironStone` varchar(15) NOT NULL,
+  `oreCost` varchar(15) NOT NULL,
+  `points` varchar(15) NOT NULL,
+  `armySize` varchar(15) NOT NULL,
+  `cArmySize` int(15) NOT NULL,
+  `mainLevelToUpdate` int(3) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `accademy`
+--
+
+INSERT INTO `accademy` (`level`, `timeToUpdate`, `woodCost`, `stoneCost`, `ironStone`, `oreCost`, `points`, `armySize`, `cArmySize`, `mainLevelToUpdate`) VALUES
+(1, '600', '35000', '25000', '15000', '9500', '50', '75', 0, 2),
+(2, '900', '55000', '35000', '25000', '18500', '125', '110', 75, 2),
+(3, '1250', '85000', '85000', '35000', '25000', '150', '150', 110, 3),
+(4, '1500', '95000', '95000', '55000', '50000', '250', '200', 150, 4),
+(5, '2500', '150000', '150000', '75000', '75000', '500', '250', 200, 4);
 
 -- --------------------------------------------------------
 
@@ -51,7 +81,7 @@ CREATE TABLE `account` (
 --
 
 INSERT INTO `account` (`id`, `username`, `password`, `email`, `food`, `wood`, `stone`, `iron`, `ore`, `mitril`, `please`, `worker`, `points`, `guildID`, `lastCheck`) VALUES
-(5, 'jeko', '61853d450cd28c6574a24f31d1ed30b029cf06dc', 'jeko@jeko.jeko', '202278.88372', '27827.820832', '18534.75', '19305.75', '19832', '0', '0', '37', '78', '', 1522914058);
+(5, 'jeko', '61853d450cd28c6574a24f31d1ed30b029cf06dc', 'jeko@jeko.jeko', '210642.83372', '137680.75', '144180.75', '151180.75', '151180.75', '0', '0', '4', '250', '', 1522935670);
 
 -- --------------------------------------------------------
 
@@ -68,15 +98,16 @@ CREATE TABLE `buildlevel` (
   `bStone` varchar(3) NOT NULL,
   `bIron` varchar(3) NOT NULL,
   `bOre` varchar(3) NOT NULL,
-  `bMitril` varchar(3) NOT NULL
+  `bMitril` varchar(3) NOT NULL,
+  `accademy` int(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `buildlevel`
 --
 
-INSERT INTO `buildlevel` (`userID`, `bMain`, `bHome`, `bFood`, `bWood`, `bStone`, `bIron`, `bOre`, `bMitril`) VALUES
-(5, '1', '4', '2', '1', '1', '1', '2', '0');
+INSERT INTO `buildlevel` (`userID`, `bMain`, `bHome`, `bFood`, `bWood`, `bStone`, `bIron`, `bOre`, `bMitril`, `accademy`) VALUES
+(5, '2', '4', '3', '1', '1', '1', '2', '0', 0);
 
 -- --------------------------------------------------------
 
@@ -194,11 +225,11 @@ CREATE TABLE `b_main` (
 --
 
 INSERT INTO `b_main` (`level`, `timeToUpdate`, `costWood`, `costStone`, `costIron`, `costOre`, `points`) VALUES
-(1, 60, 2500, 2500, 1500, 1500, 55),
-(2, 180, 5000, 5000, 3000, 3000, 100),
-(3, 400, 8000, 8000, 4500, 4500, 150),
-(4, 800, 12500, 12500, 7850, 7850, 350),
-(5, 1350, 20000, 20000, 12550, 12550, 750);
+(1, 60, 15000, 8500, 1500, 1500, 55),
+(2, 180, 35000, 15000, 5000, 3000, 100),
+(3, 400, 55000, 23000, 12500, 9500, 150),
+(4, 800, 75000, 50000, 18500, 13600, 350),
+(5, 1350, 95000, 80000, 35000, 24500, 750);
 
 -- --------------------------------------------------------
 
@@ -391,11 +422,17 @@ CREATE TABLE `workers` (
 --
 
 INSERT INTO `workers` (`userID`, `b_home`, `b_food`, `b_wood`, `b_stone`, `b_ore`, `b_iron`) VALUES
-(5, '0', '0', '0', '0', '0', '0');
+(5, '0', '15', '3', '4', '5', '6');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `accademy`
+--
+ALTER TABLE `accademy`
+  ADD PRIMARY KEY (`level`);
 
 --
 -- Indexes for table `account`

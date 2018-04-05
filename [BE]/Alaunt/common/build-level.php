@@ -12,6 +12,7 @@ $bStone = '';
 $bIron = '';
 $bOre = '';
 $bMitril = '';
+$lvAccademy = '';
 
 $isValid = '';
 $message = '';
@@ -39,6 +40,7 @@ if(empty($username)){
 		$bIron   = $row[6];
 		$bOre    = $row[7];
 		$bMitril = $row[8];
+		$lvAccademy = $row[9];
 		
 		$isValid = true;
 		$message = "ok";	
@@ -58,6 +60,7 @@ $res = Array(
 "lvIron" => $bIron,
 "lvOre" => $bOre,
 "lvMitril" => $bMitril,
+"lvAccademy" => $lvAccademy,
 "message" => $message,
 "status" => $isValid
 );

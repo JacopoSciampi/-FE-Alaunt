@@ -10,7 +10,7 @@
 		$username = htmlspecialchars($_GET['username']);
 	}
 	
-	if($username == ""){ echo "hehe"; } else {
+	if($username == ""){} else {
 		$con = mysqli_connect("localhost", "root", "", "alaunt");
 		$USER = getUser($username);
 		$userID = $USER[0];

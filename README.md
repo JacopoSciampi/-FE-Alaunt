@@ -1,27 +1,14 @@
 # Alaunt
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.5.
+Is this name familiar to you? Alaunt was a MMORPG active years and years ago. Sadly, Rama, the developer, disappeard and all the sources are gone.
+Well, not a big problem. I'm developing a copy of the old Alaunt, with some new features. 
 
-## Development server
+## Usefull links
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Topic : https://www.mmorpgitalia.it/threads/alaunt.384313/
+Video : (look on the forum post)
+Board : https://trello.com/b/rcVqjDAn/alaunt
 
-## Code scaffolding
+## Qustions
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Feel free to submit improvement here, on Trello or on the topic.

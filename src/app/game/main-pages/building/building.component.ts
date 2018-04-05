@@ -84,9 +84,9 @@ export class BuildingComponent implements OnInit {
 
                             case 'b_main':
                                 this.model[1].isUpdate = true;
-                                this.model[2].timeStart = isUpdating.timeStart;
-                                this.model[3].timeEnd = isUpdating.timeEnd;
-                                this.model[4].timeTotal = isUpdating.timeTotal;
+                                this.model[1].timeStart = isUpdating.timeStart;
+                                this.model[1].timeEnd = isUpdating.timeEnd;
+                                this.model[1].timeTotal = isUpdating.timeTotal;
                                 break;
 
                             case 'b_food':

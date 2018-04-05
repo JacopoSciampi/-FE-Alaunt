@@ -31,10 +31,10 @@
           <span class="green" *ngIf="data.foodWorkers > 0">{{data.foodPrActual | floor}}</span>
           <span class="red" *ngIf="data.foodWorkers == 0">{{data.foodPrActual | floor}}</span>
           <span>(
-            <span class="red">-{{data.foodConsumato}}</span>)
+            <span class="red">-{{data.foodConsumato | floor}}</span>)
           </span>
           <span> =
-            <span class="blu">{{data.foodPrActual - data.foodConsumato }}</span>
+            <span class="blu">{{ftotal | floor }}</span>
           </span>
         </div>
       </div>

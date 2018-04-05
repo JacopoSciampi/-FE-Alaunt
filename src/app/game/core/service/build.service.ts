@@ -54,6 +54,10 @@ export class BuildService {
         return this.http.get(GLOBAL_PATH + 'common/update/check.php?username=' + username);
     }
 
+    public updateMain(people: number, username: string) {
+        return this.http.get(GLOBAL_PATH + 'common/update/update-main.php?workers=' + people + '&username=' + username);
+    }
+
     public updateHome(people: number, username: string) {
         return this.http.get(GLOBAL_PATH + 'common/update/update-home.php?workers=' + people + '&username=' + username);
     }

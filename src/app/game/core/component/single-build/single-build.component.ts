@@ -138,6 +138,7 @@ export class SingleBuildComponent implements OnInit {
                         this.updateHome(+data.number);
                         break;
                     case 'main':
+                        this.updateMain(+data.number);
                         break;
                     case 'food':
                         this.updateFood(+data.number);
@@ -168,6 +169,20 @@ export class SingleBuildComponent implements OnInit {
 
     public updateHome(workers: number): void {
         this.buildService.updateHome(workers, this.guard.currentUser)
+            .finally(() => this.isUpdateRequestLoading = false)
+            .subscribe((res: any) => {
+                const data = JSON.parse(res._body) as StdModel;
+                if (!!data && data.status) {
+                    this.ms.info('Update started!');
+                    window.location.reload();
+                } else {
+                    this.ms.error(data.message);
+                }
+            });
+    }
+
+    public updateMain(workers: number): void {
+        this.buildService.updateMain(workers, this.guard.currentUser)
             .finally(() => this.isUpdateRequestLoading = false)
             .subscribe((res: any) => {
                 const data = JSON.parse(res._body) as StdModel;

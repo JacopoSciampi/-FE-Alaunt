@@ -107,6 +107,9 @@ function updateUpdating($username) {
 				if($name == "b_iron"){
 					$buildUP = "UPDATE buildlevel SET bIron = '$newLevel' WHERE userID='$userID'";
 				}
+				if($name == "b_main"){
+					$buildUP = "UPDATE buildlevel SET bMain = '$newLevel' WHERE userID='$userID'";
+				}
 				
 				if($con->query($up)) {} else {echo $con->error;};
 				if($con->query($userUP)){} else {echo $con->error;};
@@ -164,7 +167,7 @@ function update($username) {
 		$oreWorkers = $WORKERS[5];
 		$ironWorkers = $WORKERS[6];
 		
-		$totalWorkers = $foodWorkers + $woodWorkers + $stoneWorkers + $oreWorkers + $ironWorkers;
+		$totalWorkers = ($foodWorkers / 3)  + $woodWorkers + $stoneWorkers + $oreWorkers + $ironWorkers;
 		
 		$foodPrSecond  = $foodPrMinute / 60;
 		$woodPrSecond  = $woodPrMinute / 60;
@@ -181,15 +184,17 @@ function update($username) {
 		$secondsPassed = (time() - $ACCOUNT[14]);
 		
 		// ora calcolo quanto cibo consumano i miei lavoratorih
-		$foodConsumatoPrSec = $totalWorkers * 0.1;		
+		$foodConsumatoPrSec = $totalWorkers * 0.15;		
 		
 		$foodToAdd  = $ACCOUNT[4] + ($totProdSec * $secondsPassed) - ($foodConsumatoPrSec * $secondsPassed);
 		$woodToAdd  = $ACCOUNT[5] + ($woodPrSecond * $secondsPassed);
 		$stoneToAdd = $ACCOUNT[6] + ($stonePrSecond * $secondsPassed);
 		$oreToAdd   = $ACCOUNT[8] + ($orePrSecond * $secondsPassed);
 		$ironToAdd   = $ACCOUNT[7] + ($ironPrSecond * $secondsPassed);
+		
+		$timeNow = time();
 			
-		$sql = "UPDATE account SET food='$foodToAdd', wood='$woodToAdd', stone='$stoneToAdd', iron='$ironToAdd', ore='$oreToAdd' WHERE id='$userID'";
+		$sql = "UPDATE account SET food='$foodToAdd', wood='$woodToAdd', stone='$stoneToAdd', iron='$ironToAdd', ore='$oreToAdd', lastCheck='$timeNow' WHERE id='$userID'";
 		if($con->query($sql)){} else { echo $con->error;}
 	}	
 	updateUpdating($username);
@@ -240,7 +245,7 @@ function updateResources($username) {
 		$oreWorkers = $WORKERS[5];
 		$ironWorkers = $WORKERS[6];
 		
-		$totalWorkers = $foodWorkers + $woodWorkers + $stoneWorkers + $oreWorkers + $ironWorkers;
+		$totalWorkers = ($foodWorkers / 3)  + $woodWorkers + $stoneWorkers + $oreWorkers + $ironWorkers;
 		
 		$foodPrSecond  = $foodPrMinute / 60;
 		$woodPrSecond  = $woodPrMinute / 60;
@@ -257,7 +262,7 @@ function updateResources($username) {
 		$secondsPassed = (time() - $ACCOUNT[14]);
 		
 		// ora calcolo quanto cibo consumano i miei lavoratorih
-		$foodConsumatoPrSec = $totalWorkers * 0.1;		
+		$foodConsumatoPrSec = $totalWorkers * 0.15;		
 		
 		$foodToAdd  = $ACCOUNT[4] + ($totProdSec * $secondsPassed) - ($foodConsumatoPrSec * $secondsPassed);
 		$woodToAdd  = $ACCOUNT[5] + ($woodPrSecond * $secondsPassed);
@@ -267,6 +272,7 @@ function updateResources($username) {
 			
 		$sql = "UPDATE account SET food='$foodToAdd', wood='$woodToAdd', stone='$stoneToAdd', iron='$ironToAdd', ore='$oreToAdd' WHERE id='$userID'";
 		if($con->query($sql)){} else { echo $con->error;}
+		updateUpdating($username);
 	}	
 }
 
