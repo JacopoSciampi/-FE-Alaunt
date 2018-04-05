@@ -1,3 +1,19 @@
 .wrp {
   margin-bottom: 16px;
 }
+
+.borders {
+  margin: 0px;
+  margin-bottom: 8px;
+  background-color: beige;
+  border-color: #000;
+  border: 1px solid;
+  padding: 8px;
+  text-align: center;
+}
+
+span.sbt {
+  border: 1px solid;
+  padding: 0px 4px 0px 4px;
+  cursor: pointer;
+}

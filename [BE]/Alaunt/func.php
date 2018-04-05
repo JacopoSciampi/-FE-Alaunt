@@ -195,4 +195,79 @@ function update($username) {
 	updateUpdating($username);
 }
 
+
+function updateResources($username) {
+	$con = mysqli_connect("localhost", "root", "", "alaunt");
+	$result1 = $con->query("SELECT * FROM account WHERE username = '$username'");
+	$ACCOUNT = mysqli_fetch_array($result1,MYSQLI_NUM);
+	$userID = $ACCOUNT[0];
+	
+	if($ACCOUNT[4] > 0){ // No food == no work N3Gr0
+	
+		$result2 = $con->query("SELECT * FROM workers WHERE userID = '$userID'");
+		$WORKERS = mysqli_fetch_array($result2,MYSQLI_NUM);
+		$result3 = $con->query("SELECT * FROM buildlevel WHERE userID='$userID'");
+		$BUILDLEVEL = mysqli_fetch_array($result3,MYSQLI_NUM);
+		
+		$lvFood  = $BUILDLEVEL[3];
+		$lvWood  = $BUILDLEVEL[4];
+		$lvStone = $BUILDLEVEL[5];
+		$lvIron  = $BUILDLEVEL[6];
+		$lvOre   = $BUILDLEVEL[7];
+		
+		// Single build
+		
+		$r1 = $con->query("SELECT * FROM b_food WHERE level = '$lvFood'");
+		$FOOD = mysqli_fetch_array($r1,MYSQLI_NUM);
+		$r2 = $con->query("SELECT * FROM b_wood WHERE level = '$lvWood'");
+		$WOOD = mysqli_fetch_array($r2,MYSQLI_NUM);
+		$r3 = $con->query("SELECT * FROM b_stone WHERE level = '$lvStone'");
+		$STONE = mysqli_fetch_array($r3,MYSQLI_NUM);
+		$r4 = $con->query("SELECT * FROM b_ore WHERE level = '$lvOre'");
+		$ORE = mysqli_fetch_array($r4,MYSQLI_NUM);
+		$r5 = $con->query("SELECT * FROM b_iron WHERE level = '$lvIron'");
+		$IRON = mysqli_fetch_array($r5,MYSQLI_NUM);
+		
+		$foodPrMinute = $FOOD[1];
+		$woodPrMinute = $WOOD[1];
+		$stonePrMinute = $STONE[1];
+		$orePrMinute = $ORE[1];
+		$ironPrMinute = $IRON[1];
+		
+		$foodWorkers = $WORKERS[2];
+		$woodWorkers = $WORKERS[3];
+		$stoneWorkers = $WORKERS[4];
+		$oreWorkers = $WORKERS[5];
+		$ironWorkers = $WORKERS[6];
+		
+		$totalWorkers = $foodWorkers + $woodWorkers + $stoneWorkers + $oreWorkers + $ironWorkers;
+		
+		$foodPrSecond  = $foodPrMinute / 60;
+		$woodPrSecond  = $woodPrMinute / 60;
+		$stonePrSecond = $stonePrMinute / 60;
+		$orePrSecond   = $orePrMinute / 60;
+		$ironPrSecond   = $ironPrMinute / 60;
+		
+		$totProdSec   = $foodPrSecond * $foodWorkers;
+		$woodProdSec  = $woodPrSecond * $woodWorkers;
+		$stoneProdSec = $stonePrSecond * $stoneWorkers;
+		$oreProdSec   = $orePrSecond * $oreWorkers;
+		$ironProdSec  = $ironPrSecond * $ironWorkers;
+
+		$secondsPassed = (time() - $ACCOUNT[14]);
+		
+		// ora calcolo quanto cibo consumano i miei lavoratorih
+		$foodConsumatoPrSec = $totalWorkers * 0.1;		
+		
+		$foodToAdd  = $ACCOUNT[4] + ($totProdSec * $secondsPassed) - ($foodConsumatoPrSec * $secondsPassed);
+		$woodToAdd  = $ACCOUNT[5] + ($woodPrSecond * $secondsPassed);
+		$stoneToAdd = $ACCOUNT[6] + ($stonePrSecond * $secondsPassed);
+		$oreToAdd   = $ACCOUNT[8] + ($orePrSecond * $secondsPassed);
+		$ironToAdd   = $ACCOUNT[7] + ($ironPrSecond * $secondsPassed);
+			
+		$sql = "UPDATE account SET food='$foodToAdd', wood='$woodToAdd', stone='$stoneToAdd', iron='$ironToAdd', ore='$oreToAdd' WHERE id='$userID'";
+		if($con->query($sql)){} else { echo $con->error;}
+	}	
+}
+
 ?>

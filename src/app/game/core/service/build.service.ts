@@ -8,6 +8,14 @@ export class BuildService {
         private http: Http
     ) { }
 
+    // COMMON
+
+    public reditribuitePopulation(username: string) {
+        return this.http.get(GLOBAL_PATH + 'refactorPop.php?username=' + username);
+    }
+
+    // STD
+
     public getbuildLevel(username: string) {
         return this.http.get(GLOBAL_PATH + 'common/build-level.php?username=' + username);
     }

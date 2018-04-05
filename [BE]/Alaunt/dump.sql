@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 04, 2018 at 05:49 PM
+-- Generation Time: Apr 05, 2018 at 09:53 AM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 7.2.1
 
@@ -51,7 +51,7 @@ CREATE TABLE `account` (
 --
 
 INSERT INTO `account` (`id`, `username`, `password`, `email`, `food`, `wood`, `stone`, `iron`, `ore`, `mitril`, `please`, `worker`, `points`, `guildID`, `lastCheck`) VALUES
-(5, 'jeko', '61853d450cd28c6574a24f31d1ed30b029cf06dc', 'jeko@jeko.jeko', '58456.483723', '13538.570832', '4245.5', '5016.5', '5542.75', '0', '0', '0', '78', '', 1522856901);
+(5, 'jeko', '61853d450cd28c6574a24f31d1ed30b029cf06dc', 'jeko@jeko.jeko', '202278.88372', '27827.820832', '18534.75', '19305.75', '19832', '0', '0', '37', '78', '', 1522914058);
 
 -- --------------------------------------------------------
 
@@ -391,7 +391,7 @@ CREATE TABLE `workers` (
 --
 
 INSERT INTO `workers` (`userID`, `b_home`, `b_food`, `b_wood`, `b_stone`, `b_ore`, `b_iron`) VALUES
-(5, '0', '25', '3', '7', '1', '1');
+(5, '0', '0', '0', '0', '0', '0');
 
 --
 -- Indexes for dumped tables

@@ -4,7 +4,7 @@ import { GuardService } from '../../core/service/auth.guard';
 import { BackEndBuildResponce } from '../../core/const/building.const';
 import { ModelSingleBuild, HomeBuildModel, MainBuildModel, StandardBuildModel, IsUpdatingBEModel, FoodBuildModel } from './building.model';
 import { Observable } from 'rxjs/Observable';
-import { SingleBuildComponent } from '../../core/component/single-build/single-build.component';
+import { SingleBuildComponent, StdModel } from '../../core/component/single-build/single-build.component';
 
 @Component({
     selector: 'app-building',
@@ -255,6 +255,16 @@ export class BuildingComponent implements OnInit {
                 atWork: this.cost[6].atWork
             },
         ];
+    }
+
+    public RedistribuitePop(): void {
+        this.service.reditribuitePopulation(this.guard.currentUser)
+            .subscribe((res: any) => {
+                const data = JSON.parse(res._body) as StdModel;
+                if (!!data && data.status) {
+                    window.location.reload();
+                }
+            });
     }
 
 }
