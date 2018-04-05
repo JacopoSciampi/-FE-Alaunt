@@ -7,6 +7,7 @@ export class BackEndBuildResponce {
     lvIron: number;
     lvOre: number;
     lvMitril: number;
+    lvAccademy: number;
     message: string;
     status: boolean;
 }

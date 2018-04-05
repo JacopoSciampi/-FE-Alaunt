@@ -25,15 +25,15 @@
 		$userID = $USER[0];
 		
 		$workersAt = getWorkersAt($username);
-		$oreWorkers = $workersAt[5];
+		$mitrilWorkers = $workersAt[7];
 		$totalFreeWorkers = $USER[11];
 		
 		// First
 		
-		$tmpNavbarWorkers = $totalFreeWorkers + $oreWorkers;
-		$tmporeWorkers = $workers;
+		$tmpNavbarWorkers = $totalFreeWorkers + $mitrilWorkers;
+		$tmpmitrilWorkers = $workers;
 		
-		$tmpNavbarWorkers = $tmpNavbarWorkers - $tmporeWorkers;
+		$tmpNavbarWorkers = $tmpNavbarWorkers - $tmpmitrilWorkers;
 		
 		if($tmpNavbarWorkers < 0 ){
 			// ne ho messi più di quanti ne abbia
@@ -41,7 +41,7 @@
 			$message = "You don't have this much workers available";
 		} else {
 			$q1 = "UPDATE account SET worker = '$tmpNavbarWorkers' WHERE id='$userID'";
-			$q2 = "UPDATE workers SET  b_ore = '$tmporeWorkers' WHERE userID='$userID'";
+			$q2 = "UPDATE workers SET  b_mitril = '$tmpmitrilWorkers' WHERE userID='$userID'";
 			
 			if($con->query($q1)) {} else { echo $con->error; }
 			if($con->query($q2)) {} else { echo $con->error; }

@@ -12,6 +12,7 @@ import { ToastService } from '../../core/service/toast.service';
 export class HomeComponent implements OnInit {
     public data: HomeModelsFromBE;
     public isRequestLoading = true;
+    public ftotal: number;
 
     constructor(
         private ms: ToastService,
@@ -26,6 +27,7 @@ export class HomeComponent implements OnInit {
                 const data = JSON.parse(res._body) as HomeModelsFromBE;
                 if (!!data && data.status) {
                     this.data = data;
+                    this.ftotal = data.foodPrActual - data.foodConsumato;
                     this.isRequestLoading = false;
                 } else {
                     this.ms.error(data.message);

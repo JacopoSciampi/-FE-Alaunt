@@ -1,1 +1,75 @@
-
+<div *ngIf="!isRequestLoading">
+  <div class="row">
+    <!-- ACCADEMY -->
+    <div class="col-md-12">
+      <div class="col-md-12 main-wrp">
+        <div class="lib-panel">
+          <div class="row box-shadow">
+            <div class="col-md-3">
+              <img class="image" src="/assets/images/building/accademy.png">
+            </div>
+            <div class="col-md-9">
+              <div class="header">
+                <span class="big-title">Accademy</span> - Level : {{accademy.level}}
+              </div>
+              <div class="separator"></div>
+              <div class="body">
+                Your generals, military engineers and your best warriors gather in this placeholder where tactics, tools, weapons and protections
+                are developed at their best to defend your Feud. Be sure to update this building in order to expand your
+                army limit size.
+              </div>
+              <div class="separator"></div>
+              <div *ngIf="mainLevel < accademy.mainLevelToUpdate">
+                <h4>You can't build this construction yet</h4>
+                Upgrade first your
+                <i>Sacred Tree</i> to
+                <span class="red">level {{accademy.mainLevelToUpdate}}</span>
+              </div>
+              <div *ngIf="canShowDataInfoAccademy">
+                <div class="footer" *ngIf="!accademy.isUpdate">
+                  <h4>Cost to update</h4>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <span>
+                        <img class="small-image" src="/assets/images/navbar/wood.png"> {{accademy.woodCost}}</span>
+                      <span>
+                        <img class="small-image" src="/assets/images/navbar/stone.png"> {{accademy.stoneCost}}</span>
+                      <span *ngIf="!!accademy.ironCost">
+                        <img class="small-image" src="/assets/images/navbar/iron.png"> {{accademy.ironCost}}</span>
+                      <span *ngIf="!!accademy.oreCost">
+                        <img class="small-image" src="/assets/images/navbar/ore.png"> {{accademy.oreCost}}</span>
+                    </div>
+                    <div class="col-md-12 margin-top">
+                      Time to update: {{accademyStringTime}}
+                    </div>
+                    <div class="col-md-12 margin-top">
+                      Army size: {{accademy.currentArmyLimit}} (
+                      <span class="green">+{{accademy.armyLimit}}</span>)
+                    </div>
+                    <div class="col-md-6 margin-top">
+                      <form [formGroup]="updateFormGroup">
+                        <input class="inp" OnlyNumber="true" type="text" placeholder="Workers to update" formControlName="number">
+                      </form>
+                    </div>
+                    <div class="col-md-6 margin-top" *ngIf="!isSomethingUpdating">
+                      <button class="c-btn" (click)="onUpdateAccademy()" *ngIf="!isUpdateRequestLoading"> Update</button>
+                      <img class="gif" src="/assets/loading.GIF" *ngIf="isUpdateRequestLoading">
+                    </div>
+                    <div class="col-md-6 margin-top" *ngIf="isSomethingUpdating">
+                      <div class="info">An update is already in progress</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="footer" *ngIf="isAccademyUpdate">
+                  <h4>Update in progress</h4>
+                  <app-loading-bar [data]="updateData" *ngIf="renderProgressBar"></app-loading-bar>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- END ACCADEMY -->
+  </div>
+</div>
