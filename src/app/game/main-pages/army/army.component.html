@@ -52,7 +52,7 @@
                       </form>
                     </div>
                     <div class="col-md-6 margin-top" *ngIf="!isSomethingUpdating">
-                      <button class="c-btn" (click)="onUpdateClick()" *ngIf="!isUpdateRequestLoading"> Update</button>
+                      <button class="c-btn" (click)="onUpdateAccademy()" *ngIf="!isUpdateRequestLoading"> Update</button>
                       <img class="gif" src="/assets/loading.GIF" *ngIf="isUpdateRequestLoading">
                     </div>
                     <div class="col-md-6 margin-top" *ngIf="isSomethingUpdating">
@@ -60,9 +60,9 @@
                     </div>
                   </div>
                 </div>
-                <div class="footer" *ngIf="!!accademy.isUpdate">
+                <div class="footer" *ngIf="isAccademyUpdate">
                   <h4>Update in progress</h4>
-                  <app-loading-bar [data]="updateData" *ngIf="isLoadingBarRenderComplete"></app-loading-bar>
+                  <app-loading-bar [data]="updateData" *ngIf="renderProgressBar"></app-loading-bar>
                 </div>
               </div>
             </div>

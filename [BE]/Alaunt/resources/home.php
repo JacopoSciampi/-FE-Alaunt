@@ -26,6 +26,8 @@
     $orePrMinute = "";
     $orePrActual = "";
     $oreWorkers = "";
+	$totMitril = "";
+	$mitrilPrActual = "";
 	
 	$status = false;
 	$message = "Internal error";
@@ -50,6 +52,7 @@
 		$lvStone = $BUILDLEVEL[5];
 		$lvIron  = $BUILDLEVEL[6];
 		$lvOre   = $BUILDLEVEL[7];
+		$lvMitril = $BUILDLEVEL[8];
 		
 		// Single build
 		
@@ -63,20 +66,24 @@
 		$ORE = mysqli_fetch_array($r4,MYSQLI_NUM);
 		$r5 = $con->query("SELECT * FROM b_iron WHERE level = '$lvIron'");
 		$IRON = mysqli_fetch_array($r5,MYSQLI_NUM);
+		$r6 = $con->query("SELECT * FROM b_mitril WHERE level = '$lvMitril'");
+		$MITRIL = mysqli_fetch_array($r6,MYSQLI_NUM);
 		
 		$foodPrMinute = $FOOD[1];
 		$woodPrMinute = $WOOD[1];
 		$stonePrMinute = $STONE[1];
 		$orePrMinute = $ORE[1];
 		$ironPrMinute = $IRON[1];
+		$mitrilPrMinute = $MITRIL[1];
 		
 		$foodWorkers = $WORKERS[2];
 		$woodWorkers = $WORKERS[3];
 		$stoneWorkers = $WORKERS[4];
 		$oreWorkers = $WORKERS[5];
 		$ironWorkers = $WORKERS[6];
+		$mitrilWorkers = $WORKERS[7];
 		
-		$totalWorkers = ($foodWorkers / 3) + $woodWorkers + $stoneWorkers + $oreWorkers + $ironWorkers;
+		$totalWorkers = ($foodWorkers / 3)  + $woodWorkers + $stoneWorkers + $oreWorkers + $ironWorkers + ($mitrilWorkers * 2);
 		
 		$totFood = $ACCOUNT[4];
 		$foodPrActual = $foodPrMinute * $foodWorkers;
@@ -93,6 +100,9 @@
 		
 		$totOre = $ACCOUNT[8];
 		$orePrActual = $orePrMinute * $oreWorkers;
+		
+		$totMitril = $ACCOUNT[9];
+		$mitrilPrActual = $mitrilPrMinute * $mitrilWorkers;
 		
 		$status = true;
 		$mssages = "ok";
@@ -122,7 +132,11 @@ $res = Array(
 	"orePrActual" => $orePrActual ,
 	"oreWorkers" => $oreWorkers ,
 	"status" => $status ,
-	"message" => $message 
+	"message" => $message,
+	"totMitril" => $totMitril,
+	"mitrilPrMinute" => $mitrilPrMinute,
+	"mitrilPrActual" => $mitrilPrActual,
+	"mitrilWorkers" => $mitrilWorkers
 );
 
 echo  json_encode($res);

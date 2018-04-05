@@ -25,6 +25,11 @@ export class HomeModelsFromBE {
     public orePrActual: number;
     public oreWorkers: number;
 
+    public totMitril: number;
+    public mitrilPrMinute: number;
+    public mitrilPrActual: number;
+    public mitrilWorkers: number;
+
     // Later on add army
 
     public status: boolean;

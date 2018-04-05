@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 05, 2018 at 03:42 PM
+-- Generation Time: Apr 05, 2018 at 05:19 PM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 7.2.1
 
@@ -81,7 +81,7 @@ CREATE TABLE `account` (
 --
 
 INSERT INTO `account` (`id`, `username`, `password`, `email`, `food`, `wood`, `stone`, `iron`, `ore`, `mitril`, `please`, `worker`, `points`, `guildID`, `lastCheck`) VALUES
-(5, 'jeko', '61853d450cd28c6574a24f31d1ed30b029cf06dc', 'jeko@jeko.jeko', '210642.83372', '137680.75', '144180.75', '151180.75', '151180.75', '0', '0', '4', '250', '', 1522935670);
+(5, 'jeko', '61853d450cd28c6574a24f31d1ed30b029cf06dc', 'jeko@jeko.jeko', '214994.43372', '104145.25', '120645.25', '137645.25', '143145.25', '24.75', '0', '0', '300', '', 1522941528);
 
 -- --------------------------------------------------------
 
@@ -107,7 +107,7 @@ CREATE TABLE `buildlevel` (
 --
 
 INSERT INTO `buildlevel` (`userID`, `bMain`, `bHome`, `bFood`, `bWood`, `bStone`, `bIron`, `bOre`, `bMitril`, `accademy`) VALUES
-(5, '2', '4', '3', '1', '1', '1', '2', '0', 0);
+(5, '2', '4', '3', '1', '1', '1', '2', '1', 1);
 
 -- --------------------------------------------------------
 
@@ -245,20 +245,21 @@ CREATE TABLE `b_mitril` (
   `costStone` int(9) NOT NULL,
   `costIron` int(9) NOT NULL,
   `costOre` int(9) NOT NULL,
-  `points` int(9) NOT NULL
+  `points` int(9) NOT NULL,
+  `cProduction` int(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `b_mitril`
 --
 
-INSERT INTO `b_mitril` (`level`, `production`, `timeToUpdate`, `costWood`, `costStone`, `costIron`, `costOre`, `points`) VALUES
-(1, 3, 60, 15000, 15000, 2500, 2500, 75),
-(2, 5, 90, 25000, 25000, 4500, 4500, 95),
-(3, 7, 120, 40000, 40000, 7500, 7500, 125),
-(4, 10, 180, 75000, 75000, 11000, 11000, 170),
-(5, 13, 300, 100000, 100000, 15000, 15000, 220),
-(6, 17, 380, 150000, 150000, 22000, 22000, 290);
+INSERT INTO `b_mitril` (`level`, `production`, `timeToUpdate`, `costWood`, `costStone`, `costIron`, `costOre`, `points`, `cProduction`) VALUES
+(1, 3, 60, 15000, 15000, 2500, 2500, 75, 0),
+(2, 5, 90, 25000, 25000, 4500, 4500, 95, 3),
+(3, 7, 120, 40000, 40000, 7500, 7500, 125, 5),
+(4, 10, 180, 75000, 75000, 11000, 11000, 170, 7),
+(5, 13, 300, 100000, 100000, 15000, 15000, 220, 10),
+(6, 17, 380, 150000, 150000, 22000, 22000, 290, 13);
 
 -- --------------------------------------------------------
 
@@ -399,7 +400,7 @@ CREATE TABLE `updating` (
 --
 
 INSERT INTO `updating` (`userID`, `name`, `tstart`, `tend`, `nworkers`, `points`, `newlevel`, `ttotal`) VALUES
-('5', '', '0', '0', '0', '0', '0', '0');
+('5', '', '0', '1522939820', '0', '0', '0', '0');
 
 -- --------------------------------------------------------
 
@@ -414,15 +415,16 @@ CREATE TABLE `workers` (
   `b_wood` varchar(15) NOT NULL,
   `b_stone` varchar(15) NOT NULL,
   `b_ore` varchar(15) NOT NULL,
-  `b_iron` varchar(15) NOT NULL
+  `b_iron` varchar(15) NOT NULL,
+  `b_mitril` varchar(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `workers`
 --
 
-INSERT INTO `workers` (`userID`, `b_home`, `b_food`, `b_wood`, `b_stone`, `b_ore`, `b_iron`) VALUES
-(5, '0', '15', '3', '4', '5', '6');
+INSERT INTO `workers` (`userID`, `b_home`, `b_food`, `b_wood`, `b_stone`, `b_ore`, `b_iron`, `b_mitril`) VALUES
+(5, '0', '15', '3', '4', '5', '6', '3');
 
 --
 -- Indexes for dumped tables

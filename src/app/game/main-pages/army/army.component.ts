@@ -9,6 +9,9 @@ import { BuildService } from '../../core/service/build.service';
 import { ToastService } from '../../core/service/toast.service';
 import { AccademyModelsBE } from './army.models';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { IsUpdatingBEModel } from '../building/building.model';
+import { StdModel } from '../../core/component/single-build/single-build.component';
+import { LoadingBarModel } from '../../core/component/loading-bar/loading-bar.component';
 
 @Component({
     selector: 'app-army',
@@ -25,6 +28,12 @@ export class ArmyComponent implements OnInit {
 
     public accademyStringTime: string;
     public canShowDataInfoAccademy = false;
+    public isAccademyUpdate = false;
+
+    public isSomethingUpdating = false;
+    public isUpdatingData: IsUpdatingBEModel;
+    public updateData: LoadingBarModel;
+    public renderProgressBar = false;
 
     constructor(
         private g: GuardService,
@@ -39,15 +48,28 @@ export class ArmyComponent implements OnInit {
         this.g.currentUser = 'jeko';
         Observable.zip(
             this.service.getMainLevel(this.g.currentUser),
-            this.buildService.getbuildLevel(this.g.currentUser)
+            this.buildService.getbuildLevel(this.g.currentUser),
+            this.buildService.isSomethingUpdating(this.g.currentUser)
         )
-            .subscribe(([rMain, rLevel]: [any, any]) => {
+            .subscribe(([rMain, rLevel, rSUp]: [any, any, any]) => {
                 const main = JSON.parse(rMain._body) as MainModel;
                 const lvls = JSON.parse(rLevel._body) as BackEndBuildResponce;
+                const isUpdating = JSON.parse(rSUp._body) as IsUpdatingBEModel;
 
                 if (!!main && !!lvls && main.status && lvls.status) {
                     this.mainLevel = main.level;
                     this.level = lvls;
+
+                    if (isUpdating.isValid && isUpdating.message === 'yes') {
+                        this.isSomethingUpdating = true;
+                        switch (isUpdating.name) {
+                            case 'accademy':
+                                this.isUpdatingData = isUpdating;
+                                this.isAccademyUpdate = true;
+                                this.updateDataToUpdate(isUpdating.timeStart, isUpdating.timeEnd, isUpdating.timeTotal);
+                                break;
+                        }
+                    }
                     this.createDataForCards();
                 } else {
                     this.mg.error(main.message + lvls.message);
@@ -100,10 +122,53 @@ export class ArmyComponent implements OnInit {
         return stringTime;
     }
 
+    public onUpdateAccademy(): void {
+        const frm = this.updateFormGroup.value as FormSimple;
+        if (!!frm.number) {
+            this.buildService.updateAccademy(+frm.number, this.g.currentUser)
+                .subscribe((res: any) => {
+                    const data = JSON.parse(res._body) as StdModel;
+                    if (!!data && data.status) {
+                        this.mg.info('Update started!');
+                        window.location.reload();
+                    } else {
+                        this.mg.error(data.message);
+                    }
+                });
+        } else {
+            this.mg.error('Invalid number');
+        }
+    }
+
+    public updateDataToUpdate(tInit: number, tEnd: number, tTot: number): void {
+        Observable.interval(1000)
+            .subscribe(() => {
+                const t = tEnd - tInit;
+                const Nvalue = ((100 * t) / +tTot);
+                const r = 100 - Nvalue;
+                const Pvalue = `${r.toFixed(2)}%`;
+
+                this.updateData = {
+                    value: Nvalue,
+                    percent: Pvalue
+                };
+
+                this.renderProgressBar = true;
+                tInit++;
+                if (r >= 100) {
+                    window.location.reload();
+                }
+            });
+    }
+
 }
 
 export class MainModel {
     public level: number;
     public status: boolean;
     public message: string;
+}
+
+export class FormSimple {
+    public number: number;
 }

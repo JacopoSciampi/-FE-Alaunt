@@ -48,6 +48,10 @@ export class BuildService {
         return this.http.get(GLOBAL_PATH + 'common/build/iron.php?level=' + level + '&username=' + username);
     }
 
+    public getMitrilBuildInfo(level: number, username: string) {
+        return this.http.get(GLOBAL_PATH + 'common/build/mitril.php?level=' + level + '&username=' + username);
+    }
+
     // UPDATE
 
     public isSomethingUpdating(username: string) {
@@ -82,6 +86,14 @@ export class BuildService {
         return this.http.get(GLOBAL_PATH + 'common/update/update-iron.php?workers=' + people + '&username=' + username);
     }
 
+    public updateMitril(people: number, username: string) {
+        return this.http.get(GLOBAL_PATH + 'common/update/update-mitril.php?workers=' + people + '&username=' + username);
+    }
+
+    public updateAccademy(people: number, username: string) {
+        return this.http.get(GLOBAL_PATH + 'common/update/update-accademy.php?workers=' + people + '&username=' + username);
+    }
+
     // UPDATE WORKERS
 
     public updateFoodWokers(people: number, username: string) {
@@ -102,5 +114,9 @@ export class BuildService {
 
     public updateIronWokers(people: number, username: string) {
         return this.http.get(GLOBAL_PATH + 'common/update/work/update-iron-workers.php?workers=' + people + '&username=' + username);
+    }
+
+    public updateMitrilWokers(people: number, username: string) {
+        return this.http.get(GLOBAL_PATH + 'common/update/work/update-mitril-workers.php?workers=' + people + '&username=' + username);
     }
 }

@@ -143,4 +143,30 @@
         </div>
       </div>
     </div>
+    <!-- MITRIL -->
+    <div class="col-md-6 margin-bottom">
+      <div class="wrp">
+        <h5 class="cnt">Mithril</h5>
+        <hr>
+        <div>
+          <span class="br">Total</span> :
+          <span class="green" *ngIf="data.totMitril > 0">{{data.totMitril | floor}}</span>
+          <span class="red" *ngIf="data.totMitril < 0">{{data.totMitril | floor}}</span>
+        </div>
+        <div>
+          <span class="br">Production/minute</span> :
+          <span>{{data.mitrilPrMinute | floor}}</span>
+        </div>
+        <div>
+          <span class="br">Workers</span> :
+          <span>{{data.mitrilWorkers | floor}}</span>
+        </div>
+        <hr>
+        <div>
+          <span class="br">Current Production</span> :
+          <span class="green" *ngIf="data.mitrilWorkers > 0">{{data.mitrilPrActual | floor}}</span>
+          <span class="red" *ngIf="data.mitrilWorkers == 0">{{data.mitrilPrActual | floor}}</span>
+        </div>
+      </div>
+    </div>
   </div>

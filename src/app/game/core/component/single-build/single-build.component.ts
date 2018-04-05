@@ -42,9 +42,9 @@ export class SingleBuildComponent implements OnInit {
                 m = `0${m}`;
             }
             if (h > 9) {
-                this.stringTime = `${h}:${m}:00`;
+                this.stringTime = `${h.toFixed(0)}:${m}:00`;
             } else {
-                this.stringTime = `0${h}:${m}:00`;
+                this.stringTime = `0${h.toFixed(0)}:${m}:00`;
             }
         } else {
             this.stringTime = `00:${m}:00`;
@@ -118,6 +118,10 @@ export class SingleBuildComponent implements OnInit {
                         this.updateIronWorkers(+data.nWork);
                         break;
 
+                    case 'mitril':
+                        this.updateMitrilWorkers(+data.nWork);
+                        break;
+
                 }
             } else {
                 this.ms.error('Invalid number');
@@ -154,6 +158,9 @@ export class SingleBuildComponent implements OnInit {
                         break;
                     case 'iron':
                         this.updateIron(+data.number);
+                        break;
+                    case 'mitril':
+                        this.updateMitril(+data.number);
                         break;
 
                 }
@@ -265,6 +272,20 @@ export class SingleBuildComponent implements OnInit {
             });
     }
 
+    public updateMitril(workers: number): void {
+        this.buildService.updateMitril(workers, this.guard.currentUser)
+            .finally(() => this.isUpdateRequestLoading = false)
+            .subscribe((res: any) => {
+                const data = JSON.parse(res._body) as StdModel;
+                if (!!data && data.status) {
+                    this.ms.info('Update started!');
+                    window.location.reload();
+                } else {
+                    this.ms.error(data.message);
+                }
+            });
+    }
+
     // WORKERS UPDATE
 
     public updateFoodWorkers(workers: number): void {
@@ -325,6 +346,20 @@ export class SingleBuildComponent implements OnInit {
 
     public updateIronWorkers(workers: number): void {
         this.buildService.updateIronWokers(workers, this.guard.currentUser)
+            .finally(() => this.isUpdateRequestLoading = false)
+            .subscribe((res: any) => {
+                const data = JSON.parse(res._body) as StdModel;
+                if (!!data && data.status) {
+                    this.ms.info('Saved changes');
+                    window.location.reload();
+                } else {
+                    this.ms.error(data.message);
+                }
+            });
+    }
+
+    public updateMitrilWorkers(workers: number): void {
+        this.buildService.updateMitrilWokers(workers, this.guard.currentUser)
             .finally(() => this.isUpdateRequestLoading = false)
             .subscribe((res: any) => {
                 const data = JSON.parse(res._body) as StdModel;

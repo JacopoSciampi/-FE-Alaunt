@@ -51,8 +51,9 @@ export class BuildingComponent implements OnInit {
             this.service.getStoneBuildInfo(this.level.lvStone, this.guard.currentUser),
             this.service.getOreBuildInfo(this.level.lvOre, this.guard.currentUser),
             this.service.getIronBuildInfo(this.level.lvIron, this.guard.currentUser),
+            this.service.getMitrilBuildInfo(this.level.lvIron, this.guard.currentUser),
         )
-            .subscribe(([rHome, rMain, rFood, rWood, rStone, rOre, rIron]: [any, any, any, any, any, any, any]) => {
+            .subscribe(([rHome, rMain, rFood, rWood, rStone, rOre, rIron, rMitril]: [any, any, any, any, any, any, any, any]) => {
 
                 const homeData = JSON.parse(rHome._body) as HomeBuildModel;
                 const mainData = JSON.parse(rMain._body) as MainBuildModel;
@@ -61,6 +62,7 @@ export class BuildingComponent implements OnInit {
                 const stoneData = JSON.parse(rStone._body) as FoodBuildModel;
                 const oreData = JSON.parse(rOre._body) as FoodBuildModel;
                 const ironData = JSON.parse(rIron._body) as FoodBuildModel;
+                const mitrilData = JSON.parse(rMitril._body) as FoodBuildModel;
 
                 if (homeData.status && mainData.status) {
                     this.cost.push(homeData);
@@ -70,6 +72,7 @@ export class BuildingComponent implements OnInit {
                     this.cost.push(stoneData);
                     this.cost.push(oreData);
                     this.cost.push(ironData);
+                    this.cost.push(mitrilData);
 
                     this.createModel();
                     if (isUpdating.isValid && isUpdating.message === 'yes') {
@@ -122,6 +125,13 @@ export class BuildingComponent implements OnInit {
                                 this.model[6].timeStart = isUpdating.timeStart;
                                 this.model[6].timeEnd = isUpdating.timeEnd;
                                 this.model[6].timeTotal = isUpdating.timeTotal;
+                                break;
+
+                            case 'b_mitril':
+                                this.model[7].isUpdate = true;
+                                this.model[7].timeStart = isUpdating.timeStart;
+                                this.model[7].timeEnd = isUpdating.timeEnd;
+                                this.model[7].timeTotal = isUpdating.timeTotal;
                                 break;
                         }
                     }
@@ -253,6 +263,26 @@ export class BuildingComponent implements OnInit {
                 productionMinute: this.cost[6].production,
                 currentProduction: this.cost[6].currentProduction,
                 atWork: this.cost[6].atWork
+            },
+            {
+                level: this.level.lvMitril,
+                name: 'Mithril Mine',
+                desc: `Mithril is drilled in the deepest rocks. It can be found only in the
+                mountains and needs a lot of effort and men to be carried to the surface. It's a
+                very precious resource.`,
+                image: '/assets/images/building/mitril.png',
+                woodCost: this.cost[7].woodCost,
+                stoneCost: this.cost[7].stoneCost,
+                ironCost: this.cost[7].ironCost,
+                oreCost: this.cost[7].oreCost,
+                points: this.cost[7].points,
+                people: this.cost[7].people,
+                timeToUpdate: this.cost[7].timeToUpdate,
+                updateName: 'mitril',
+                isProduction: true,
+                productionMinute: this.cost[7].production,
+                currentProduction: this.cost[7].currentProduction,
+                atWork: this.cost[7].atWork
             },
         ];
     }
