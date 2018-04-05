@@ -36,6 +36,7 @@ export class NavbarComponent implements OnInit {
 
     public getResources(): void {
         // this.service.getResources(this.auth.currentUser)
+        this.service.updateResources('jeko');
         this.service.getResources('jeko')
             .subscribe((res: any) => {
                 const data = JSON.parse(res._body) as NavbarResourceBackEndModel;

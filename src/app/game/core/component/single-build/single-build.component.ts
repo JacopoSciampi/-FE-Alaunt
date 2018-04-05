@@ -89,7 +89,10 @@ export class SingleBuildComponent implements OnInit {
     }
 
     public onAddWorkers(): void {
-        if (this.workFormGroup.valid) {
+        const tmp = this.workFormGroup.value as FormModel;
+        let ckh = false;
+        if (!!tmp.nWork && +tmp.nWork === 0) { ckh = true; }
+        if (this.workFormGroup.valid || ckh) {
             const data = this.workFormGroup.value as FormModel;
             if (isNumber(+data.nWork)) {
                 this.isUpdateRequestLoading = true;

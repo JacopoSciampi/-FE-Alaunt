@@ -4,7 +4,7 @@ import { GuardService } from '../../core/service/auth.guard';
 import { BackEndBuildResponce } from '../../core/const/building.const';
 import { ModelSingleBuild, HomeBuildModel, MainBuildModel, StandardBuildModel, IsUpdatingBEModel, FoodBuildModel } from './building.model';
 import { Observable } from 'rxjs/Observable';
-import { SingleBuildComponent } from '../../core/component/single-build/single-build.component';
+import { SingleBuildComponent, StdModel } from '../../core/component/single-build/single-build.component';
 
 @Component({
     selector: 'app-building',
@@ -53,6 +53,7 @@ export class BuildingComponent implements OnInit {
             this.service.getIronBuildInfo(this.level.lvIron, this.guard.currentUser),
         )
             .subscribe(([rHome, rMain, rFood, rWood, rStone, rOre, rIron]: [any, any, any, any, any, any, any]) => {
+
                 const homeData = JSON.parse(rHome._body) as HomeBuildModel;
                 const mainData = JSON.parse(rMain._body) as MainBuildModel;
                 const foodData = JSON.parse(rFood._body) as FoodBuildModel;
@@ -254,6 +255,16 @@ export class BuildingComponent implements OnInit {
                 atWork: this.cost[6].atWork
             },
         ];
+    }
+
+    public RedistribuitePop(): void {
+        this.service.reditribuitePopulation(this.guard.currentUser)
+            .subscribe((res: any) => {
+                const data = JSON.parse(res._body) as StdModel;
+                if (!!data && data.status) {
+                    window.location.reload();
+                }
+            });
     }
 
 }

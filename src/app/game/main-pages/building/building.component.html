@@ -1,4 +1,13 @@
 <div *ngIf="!isLoading">
+  <div class="row borders">
+    <div class="col-md-12">
+      <span>Order your people to
+        <i>lay waste</i>
+        to your feud?
+      </span>
+      <span class="sbt" (click)="RedistribuitePop()"> OK</span>
+    </div>
+  </div>
   <div class="wrp" *ngFor="let data of model">
     <app-single-build [model]="data" [isSomethingUpdating]="isSomethingUpdating"></app-single-build>
   </div>

@@ -26,6 +26,7 @@ import { NavMenuComponent } from './game/core/component/nav-menu/nav-menu.compon
 import { EspionageComponent } from './game/main-pages/espionage/espionage.component';
 import { StatisticsComponent } from './game/main-pages/statistics/statistics.component';
 import { CreateAccountComponent } from './init/create-account/create-account.component';
+import { SingleArmyComponent } from './game/core/component/single-army/single-army.component';
 import { LoadingBarComponent } from './game/core/component/loading-bar/loading-bar.component';
 import { SingleBuildComponent } from './game/core/component/single-build/single-build.component';
 
@@ -77,6 +78,7 @@ import { LocalStorageService } from './game/core/service/local-storage.service';
         EspionageComponent,
         ErrorPageComponent,
         StatisticsComponent,
+        SingleArmyComponent,
         LoadingBarComponent,
         SingleBuildComponent,
         CreateAccountComponent,
