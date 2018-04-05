@@ -1,3 +1,146 @@
-<p>
-  home works!
-</p>
+<div class="wrp" *ngIf="!isRequestLoading">
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <h3> Production</h3>
+      <h4>
+        Total consumed food/minute :
+        <span class="red"> {{data.foodConsumato | floor}}</span>
+      </h4>
+    </div>
+    <!-- FOOD -->
+    <div class="col-md-6 margin-bottom">
+      <div class="wrp">
+        <h5 class="cnt">Food</h5>
+        <hr>
+        <div>
+          <span class="br">Total</span> :
+          <span class="green" *ngIf="data.totFood > 0">{{data.totFood | floor}}</span>
+          <span class="red" *ngIf="data.totFood < 0">{{data.totFood | floor}}</span>
+        </div>
+        <div>
+          <span class="br">Production/minute</span> :
+          <span>{{data.foodPrMinute | floor}}</span>
+        </div>
+        <div>
+          <span class="br">Workers</span> :
+          <span>{{data.foodWorkers | floor}}</span>
+        </div>
+        <hr>
+        <div>
+          <span class="br">Current Production</span> :
+          <span class="green" *ngIf="data.foodWorkers > 0">{{data.foodPrActual | floor}}</span>
+          <span class="red" *ngIf="data.foodWorkers == 0">{{data.foodPrActual | floor}}</span>
+          <span>(
+            <span class="red">-{{data.foodConsumato}}</span>)
+          </span>
+          <span> =
+            <span class="blu">{{data.foodPrActual - data.foodConsumato }}</span>
+          </span>
+        </div>
+      </div>
+    </div>
+    <!-- WOOD -->
+    <div class="col-md-6 margin-bottom">
+      <div class="wrp">
+        <h5 class="cnt">Wood</h5>
+        <hr>
+        <div>
+          <span class="br">Total</span> :
+          <span class="green" *ngIf="data.totWood > 0">{{data.totWood | floor}}</span>
+          <span class="red" *ngIf="data.totWood < 0">{{data.totWood | floor}}</span>
+        </div>
+        <div>
+          <span class="br">Production/minute</span> :
+          <span>{{data.woodPrMinute | floor}}</span>
+        </div>
+        <div>
+          <span class="br">Workers</span> :
+          <span>{{data.woodWorkers | floor}}</span>
+        </div>
+        <hr>
+        <div>
+          <span class="br">Current Production</span> :
+          <span class="green" *ngIf="data.woodWorkers > 0">{{data.woodPrActual | floor}}</span>
+          <span class="red" *ngIf="data.woodWorkers == 0">{{data.woodPrActual | floor}}</span>
+        </div>
+      </div>
+    </div>
+    <!-- STONE -->
+    <div class="col-md-6 margin-bottom">
+      <div class="wrp">
+        <h5 class="cnt">Stone</h5>
+        <hr>
+        <div>
+          <span class="br">Total</span> :
+          <span class="green" *ngIf="data.totStone > 0">{{data.totStone | floor}}</span>
+          <span class="red" *ngIf="data.totStone < 0">{{data.totStone | floor}}</span>
+        </div>
+        <div>
+          <span class="br">Production/minute</span> :
+          <span>{{data.stonePrMinute | floor}}</span>
+        </div>
+        <div>
+          <span class="br">Workers</span> :
+          <span>{{data.stoneWorkers | floor}}</span>
+        </div>
+        <hr>
+        <div>
+          <span class="br">Current Production</span> :
+          <span class="green" *ngIf="data.stoneWorkers > 0">{{data.stonePrActual | floor}}</span>
+          <span class="red" *ngIf="data.stoneWorkers == 0">{{data.stonePrActual | floor}}</span>
+        </div>
+      </div>
+    </div>
+    <!-- IRON -->
+    <div class="col-md-6 margin-bottom">
+      <div class="wrp">
+        <h5 class="cnt">Iron</h5>
+        <hr>
+        <div>
+          <span class="br">Total</span> :
+          <span class="green" *ngIf="data.totIron > 0">{{data.totIron | floor}}</span>
+          <span class="red" *ngIf="data.totIron < 0">{{data.totIron | floor}}</span>
+        </div>
+        <div>
+          <span class="br">Production/minute</span> :
+          <span>{{data.ironPrMinute | floor}}</span>
+        </div>
+        <div>
+          <span class="br">Workers</span> :
+          <span>{{data.ironWorkers | floor}}</span>
+        </div>
+        <hr>
+        <div>
+          <span class="br">Current Production</span> :
+          <span class="green" *ngIf="data.ironWorkers > 0">{{data.ironPrActual | floor}}</span>
+          <span class="red" *ngIf="data.ironWorkers == 0">{{data.ironPrActual | floor}}</span>
+        </div>
+      </div>
+    </div>
+    <!-- ORE -->
+    <div class="col-md-6 margin-bottom">
+      <div class="wrp">
+        <h5 class="cnt">Ore</h5>
+        <hr>
+        <div>
+          <span class="br">Total</span> :
+          <span class="green" *ngIf="data.totOre > 0">{{data.totOre | floor}}</span>
+          <span class="red" *ngIf="data.totOre < 0">{{data.totOre | floor}}</span>
+        </div>
+        <div>
+          <span class="br">Production/minute</span> :
+          <span>{{data.orePrMinute | floor}}</span>
+        </div>
+        <div>
+          <span class="br">Workers</span> :
+          <span>{{data.oreWorkers | floor}}</span>
+        </div>
+        <hr>
+        <div>
+          <span class="br">Current Production</span> :
+          <span class="green" *ngIf="data.oreWorkers > 0">{{data.orePrActual | floor}}</span>
+          <span class="red" *ngIf="data.oreWorkers == 0">{{data.orePrActual | floor}}</span>
+        </div>
+      </div>
+    </div>
+  </div>

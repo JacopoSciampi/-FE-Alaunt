@@ -1,0 +1,37 @@
+@font-face {
+  font-family: 'Almendra';
+  src: url('/assets/Almendra.ttf') format('truetype');
+}
+
+.wrp {
+  padding: 16px;
+  background-color: beige;
+  border-color: black;
+  border: 1px solid;
+  font-family: 'Almendra' !important;
+}
+
+.green {
+  color: green;
+}
+
+.red {
+  color: #C62828;
+}
+
+.margin-bottom {
+  margin-bottom: 8px;
+}
+
+.br {
+  font-weight: bold;
+}
+
+.cnt {
+  text-align: center;
+}
+
+.blu {
+  color: #303F9F;
+  font-weight: bold;
+}
